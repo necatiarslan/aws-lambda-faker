@@ -1,0 +1,1 @@
+Trigger your Aws Lambda Function with a generated fake payload.
