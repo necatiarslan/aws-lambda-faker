@@ -1,0 +1,18 @@
+version: 1
+config:
+  locale: en_US #faker locale Default:en_US
+  on_item_insert_error: RAISE_ERROR #RAISE_ERROR, SKIP Default:RAISE_ERROR
+  python_import:
+    - datetime
+aws:
+  region: us-east-1
+  credentials_profile: default #the profile name in your local .aws/config file Default:default
+lambda_function:
+  function_name: my_function
+  invocation_count: 10
+  invocation_type: Event # Event / RequestResponse Default:Event
+  batch: 1
+  sleep: 1000
+  payload:
+    first_name: fake.first_name()
+    last_name: fake.last_name()
