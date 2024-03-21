@@ -13,7 +13,7 @@ def main():
         print("Missing --config parameter. Use --help for more detail.")
         return
 
-    lambdafaker.invoke_lambda(config_file_path, ".")
+    lambdafaker.invoke_lambda(config_file_path)
 
 def get_description():
     return "more detail: https://github.com/necatiarslan/aws-lambda-faker/blob/main/README.md"

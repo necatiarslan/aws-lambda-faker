@@ -12,7 +12,7 @@ def invoke_lambda(config_file_path, **kwargs):
     batch = configurator.get_batch()
     sleep = configurator.get_sleep()
     lambda_client = awslambda.get_lambda_client()
-    on_item_insert_error = configurator.get_on_item_insert_error()
+    on_error = configurator.get_on_error()
     invocation_count = configurator.get_invocation_count()
     invocation_type = configurator.get_invocation_type()
 
@@ -27,7 +27,7 @@ def invoke_lambda(config_file_path, **kwargs):
             if sleep > 0 and items_inserted % batch == 0:
                 time.sleep(sleep / 1000)
         except Exception as e:
-            if on_item_insert_error == "RAISE_ERROR":
+            if on_error == "RAISE_ERROR":
                 raise Exception(f"Lambda Function {function_name} invocation error !!!\n{payload}\n{e}")
         
         iteration += 1

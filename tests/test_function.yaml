@@ -1,18 +1,18 @@
 version: 1
 config:
-  locale: en_US #faker locale Default:en_US
-  on_item_insert_error: RAISE_ERROR #RAISE_ERROR, SKIP Default:RAISE_ERROR
-  python_import:
+  locale: en_US                 # faker locale Default:en_US
+  on_error: RAISE_ERROR         # RAISE_ERROR, SKIP Default:RAISE_ERROR
+  python_import:                # Optional, list of python packages to use in data generation
     - datetime
 aws:
   region: us-east-1
-  credentials_profile: default #the profile name in your local .aws/config file Default:default
+  credentials_profile: default  # the profile name in your local .aws/config file Default:default
 lambda_function:
   function_name: my_function
-  invocation_count: 10
-  invocation_type: Event # Event / RequestResponse Default:Event
-  batch: 1
-  sleep: 1000
+  invocation_count: 10          # Optional Default:1
+  invocation_type: Event        # Event / RequestResponse Default:Event
+  batch: 1                      # Optional Default:1
+  sleep: 1000                   # Optional Default:0 No Sleep
   payload:
     first_name: fake.first_name()
     last_name: fake.last_name()

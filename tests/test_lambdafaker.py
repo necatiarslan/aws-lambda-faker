@@ -10,3 +10,4 @@ from faker import Faker
 #[os.remove(os.path.join(directory_path, file)) for file in os.listdir(directory_path) if os.path.isfile(os.path.join(directory_path, file))]
 
 lambdafaker.invoke_lambda("tests/test_function.yaml")
+#lambdafaker.invoke_lambda("tests/test_function_minimal.yaml")

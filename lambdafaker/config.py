@@ -61,9 +61,10 @@ class Config:
         else:
             return "en_US"
 
-    def get_on_item_insert_error(self):
-        if "config" in self.config and "on_item_insert_error" in self.config["config"]:
-            return self.config["config"]["on_item_insert_error"]
+    def get_on_error(self):
+        if "config" in self.config:
+            if isinstance(self.config["config"], list) and "on_error" in self.config["config"]:
+                return self.config["config"]["on_error"]
         else:
             return "RAISE_ERROR"
 
