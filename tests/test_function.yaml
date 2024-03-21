@@ -16,3 +16,20 @@ lambda_function:
   payload:
     first_name: fake.first_name()
     last_name: fake.last_name()
+    is_alive: fake.pybool()
+    age: fake.random_int(18, 90)
+    dob: fake.date_of_birth()
+    address:
+      street_address: fake.street_address()
+      city: fake.city()
+      state: fake.state_abbr()
+      postal_code: fake.postcode()
+    phone_numbers:
+      - type: "\"home\""
+        number: fake.phone_number()
+      - type: "\"office\""
+        number: fake.phone_number()
+    children:
+      - fake.first_name()
+      - fake.first_name()
+      - fake.first_name()

@@ -7,7 +7,7 @@ set positional-arguments
 
 run:
     pyenv activate dynamodb-faker
-    ~/.pyenv/versions/3.11.6/envs/dynamodb-faker/bin/python ~/GitHub/dynamodb-faker/tests/test_dynamodbfaker.py
+    ~/.pyenv/versions/3.11.6/envs/dynamodb-faker/bin/python ~/GitHub/dynamodb-faker/tests/test_lambdafaker.py
 
 pip-install:
     pipenv lock --dev
@@ -69,7 +69,7 @@ pyenv-current-virtualenv:
     pyenv version
 
 test:
-    pipenv run pytest --junit-xml=junit_xml_test_report.xml --cov-branch --cov=dynamodbfaker tests
+    pipenv run pytest --junit-xml=junit_xml_test_report.xml --cov-branch --cov=lambdafaker tests
     pipenv run coverage xml -i
 
 build:
@@ -81,13 +81,13 @@ publish:
 # Set your password to the token value, including the pypi- prefix
 
 flake8:
-	python -m flake8 dynamodbfaker
+	python -m flake8 lambdafaker
 
-pip-install-dynamodbfaker:
-    pip install ~/GitHub/dynamodb-faker/dist/dynamodbfaker-1.0.1-py3-none-any.whl --force-reinstall
+pip-install-lambdafaker:
+    pip install ~/GitHub/dynamodb-faker/dist/lambdafaker-1.0.1-py3-none-any.whl --force-reinstall
 
 clean-files:
     find tests/exports -type f -name "*.*" -exec rm {} \;
 
 test-cli:
-    dynamodbfaker --config ~/GitHub/dynamodb-faker/tests/test_cli.yaml --target ~/GitHub/dynamodb-faker/tests/exports
+    lambdafaker --config ~/GitHub/dynamodb-faker/tests/test_cli.yaml --target ~/GitHub/dynamodb-faker/tests/exports

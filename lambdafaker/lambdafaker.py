@@ -37,7 +37,7 @@ def invoke_lambda(config_file_path, **kwargs):
 def generate_json(config_file_path, **kwargs):
     configurator = config.Config(config_file_path)
     payload_config = configurator.get_payload()
-
+    python_import = configurator.get_python_import()
     locale = configurator.get_locale()
     fake = Faker(locale)
 
@@ -56,7 +56,7 @@ def generate_json(config_file_path, **kwargs):
         elif isinstance(node, str) and node == 'None':
             return None
         elif isinstance(node, str):
-            return generate_fake_value(fake, node, **kwargs)
+            return generate_fake_value(fake, node, python_import, **kwargs)
         else:
             return node
 
@@ -64,9 +64,9 @@ def generate_json(config_file_path, **kwargs):
     
     return fake_data
 
-def generate_fake_value(fake: Faker, command, **kwargs):
+def generate_fake_value(fake: Faker, command, python_import, **kwargs):
     result = None
-
+    
     variables = {
         "random": random,
         "fake": fake,
@@ -81,6 +81,10 @@ def generate_fake_value(fake: Faker, command, **kwargs):
         else:
             func = kwargs["custom_function"]
             variables[func.__name__] = func
+    
+    if python_import and isinstance(python_import, list):
+            for library_name in python_import:
+                variables[library_name] = __import__(library_name)
     
     exec(f"result = {command}", variables)
     result = variables["result"]
